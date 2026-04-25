@@ -304,11 +304,16 @@ a { color: inherit; text-decoration: none; }
 .project-card:hover .pill {
   border-color: rgba(201,168,76,.3); color: rgba(245,245,240,.65);
 }
-.project-links { display: flex; gap: 1.4rem; align-items: center; }
+.project-links {
+  display: flex; gap: 1.4rem; align-items: center;
+  position: relative; z-index: 10; pointer-events: all;
+}
 .proj-link {
   font-family: var(--font-mono); font-size: .7rem;
   letter-spacing: .1em; color: var(--white-dim);
   transition: color .3s;
+  position: relative; z-index: 10;
+  pointer-events: all; cursor: pointer;
 }
 .proj-link:hover { color: var(--white); }
 .proj-link.gold { color: var(--gold-light); }
