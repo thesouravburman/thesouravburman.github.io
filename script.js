@@ -33,7 +33,7 @@ gsap.registerPlugin(ScrollTrigger);
     requestAnimationFrame(loop);
   })();
 
-  document.querySelectorAll('a,button,.project-card,.bento,.social-btn').forEach(el => {
+  document.querySelectorAll('a,button,.social-btn,.email-link').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
   });
