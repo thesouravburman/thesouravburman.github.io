@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=C9A84C&height=140&section=header&text=Sourav%20Burman&fontSize=42&fontColor=0d0d0d&fontAlignY=65&animation=fadeIn&desc=AI%20%26%20Computer%20Vision%20Developer&descSize=16&descAlignY=85&descColor=0d0d0d" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=C9A84C&amp;height=140&amp;section=header&amp;text=Sourav%20Burman&amp;fontSize=42&amp;fontColor=0d0d0d&amp;fontAlignY=65&amp;animation=fadeIn&amp;desc=AI%20%26%20Computer%20Vision%20Developer&amp;descSize=16&amp;descAlignY=85&amp;descColor=0d0d0d" width="100%"/>
 
 <br/>
 
@@ -203,4 +203,4 @@ ML model predicting lead conversion probability from behavioural and demographic
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=C9A84C&height=100&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=C9A84C&amp;height=100&amp;section=footer" width="100%"/>
