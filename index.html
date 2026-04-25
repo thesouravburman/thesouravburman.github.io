@@ -2,123 +2,91 @@
 <html lang="en">
 <head>
   <!-- ============================================================
-       index.html — Entry point for thesouravburman.github.io
-       Portfolio of Sourav Burman, AI & Computer Vision Developer
+       index.html — thesouravburman.github.io
+       Portfolio of Sourav Burman | AI & Computer Vision Developer
   ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sourav Burman — AI & Computer Vision Developer</title>
-
-  <!-- SEO & Social Preview -->
-  <meta name="description" content="Sourav Burman — AI & Computer Vision Developer. Final year B.Tech CSE at Brainware University. ex-Samsung R&D." />
+  <meta name="description" content="Sourav Burman — AI & Computer Vision Developer. B.Tech CSE 2023–2027, Brainware University. ex-Samsung R&D." />
   <meta property="og:title" content="Sourav Burman — AI Developer" />
-  <meta property="og:description" content="Building systems that detect eye conditions, classify traffic, and read market sentiment. Final year CSE · ex-Samsung R&D." />
+  <meta property="og:description" content="Building systems that detect eye conditions, classify traffic, and read market sentiment." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thesouravburman.github.io" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@thesouravburman" />
-  <meta name="twitter:creator" content="@thesouravburman" />
 
-  <!-- Fonts: Cormorant Garamond (royal display) · DM Sans (body) · JetBrains Mono (code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- Custom Cursor -->
   <div class="cursor-dot"  id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Grain Overlay — subtle noise texture over entire page -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 1 ▸ HERO
-  ══════════════════════════════════════════════════════════ -->
-  <section id="hero" class="scene scene--hero" aria-label="Hero">
-
-    <!-- Binary rain canvas — blue 0s/1s, hero section only -->
+  <!-- SCENE 1 — HERO -->
+  <section id="hero" class="scene scene--hero">
     <canvas id="binaryRain" aria-hidden="true"></canvas>
-
-    <!-- Radial glow behind name -->
     <div class="hero-glow" aria-hidden="true"></div>
-
     <div class="hero-content">
-      <p class="hero-eyebrow" aria-hidden="true">
-        <span class="eyebrow-line"></span>
-        AI &amp; COMPUTER VISION DEVELOPER
-        <span class="eyebrow-line"></span>
+      <p class="hero-eyebrow">
+        <span class="eyebrow-line"></span>AI &amp; COMPUTER VISION DEVELOPER<span class="eyebrow-line"></span>
       </p>
-
-      <h1 class="hero-name" id="heroName" aria-label="Sourav Burman">
-        <!-- Letters injected by JS -->
-      </h1>
-
+      <h1 class="hero-name" id="heroName" aria-label="Sourav Burman"></h1>
       <div class="hero-sub">
-        <span class="typewriter" id="typewriter" aria-live="polite"></span><span class="blink-cursor" aria-hidden="true">|</span>
+        <span id="typewriter"></span><span class="blink-cursor">|</span>
       </div>
-
       <div class="hero-meta" id="heroMeta">
-        <span>Kolkata, India</span>
-        <span class="sep">·</span>
-        <span>B.Tech CSE '27</span>
-        <span class="sep">·</span>
+        <span>Kolkata, India</span><span class="sep">·</span>
+        <span>B.Tech CSE '27</span><span class="sep">·</span>
         <span>ex-Samsung R&amp;D</span>
       </div>
     </div>
-
     <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
       <div class="scroll-track"><div class="scroll-thumb"></div></div>
       <span class="scroll-label">SCROLL</span>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 2 ▸ ABOUT
-  ══════════════════════════════════════════════════════════ -->
-  <section id="about" class="scene scene--about" aria-label="About">
+  <!-- SCENE 2 — ABOUT -->
+  <section id="about" class="scene scene--about">
     <div class="about-wrap">
-
       <div class="about-left">
         <div class="section-label">ABOUT</div>
-        <div class="code-card" aria-label="Code snippet about Sourav">
+        <div class="code-card">
           <div class="code-topbar">
-            <span class="code-dot r"></span>
-            <span class="code-dot y"></span>
-            <span class="code-dot g"></span>
+            <span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
             <span class="code-filename">sourav_burman.py</span>
           </div>
           <pre class="code-body"><code><span class="kw">class</span> <span class="cn">SouravBurman</span>:
 
   <span class="kw">def</span> <span class="fn">__init__</span>(self):
-    self.role    <span class="op">=</span> <span class="st">"AI Developer"</span>
-    self.uni     <span class="op">=</span> <span class="st">"Brainware University"</span>
-    self.past    <span class="op">=</span> <span class="st">"Samsung R&amp;D, Kolkata"</span>
-    self.mission <span class="op">=</span> <span class="st">"Build what matters"</span>
+    self.role  <span class="op">=</span> <span class="st">"AI Developer"</span>
+    self.uni   <span class="op">=</span> <span class="st">"Brainware University"</span>
+    self.batch <span class="op">=</span> <span class="st">"2023 – 2027"</span>
+    self.past  <span class="op">=</span> <span class="st">"Samsung R&D, Kolkata"</span>
+    self.goal  <span class="op">=</span> <span class="st">"Build what matters"</span>
 
   <span class="kw">def</span> <span class="fn">obsession</span>(self):
     <span class="kw">return</span> <span class="st">"Real problems → impact"</span></code></pre>
         </div>
       </div>
-
       <div class="about-right">
-        <p class="about-sentence reveal-sentence">I'm a final-year Computer Science student at <strong>Brainware University, Kolkata</strong> — specialising in AI and Computer Vision.</p>
+        <p class="about-sentence reveal-sentence">I'm a third-year Computer Science student at <strong>Brainware University, Kolkata</strong> — specialising in AI and Computer Vision.</p>
         <p class="about-sentence reveal-sentence">I've built systems that detect eye conditions without any hardware, classify live traffic in real time, and read market sentiment from raw text.</p>
-        <p class="about-sentence reveal-sentence">I interned at <strong>Samsung R&amp;D Institute, Kolkata</strong> — working on AI and Computer Vision under a government-recognised programme.</p>
+        <p class="about-sentence reveal-sentence">I trained in <strong>Cryptographic Security at the Indian Statistical Institute, Kolkata</strong> under a MeitY government programme — and completed <strong>Qualcomm's Deep Tech Entrepreneurship</strong> course with a perfect 100% score.</p>
         <p class="about-sentence reveal-sentence">I'm not interested in average things. I'm obsessed with the intersection of <strong>precision engineering</strong> and real human impact.</p>
-
         <div class="about-stats">
           <div class="stat-item">
             <span class="stat-num">4</span>
             <span class="stat-lbl">Live AI Projects</span>
           </div>
           <div class="stat-item">
-            <span class="stat-num">1</span>
-            <span class="stat-lbl">Samsung R&amp;D Internship</span>
+            <span class="stat-num">6</span>
+            <span class="stat-lbl">Certifications</span>
           </div>
           <div class="stat-item">
             <span class="stat-num">∞</span>
@@ -126,32 +94,26 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 3 ▸ PROJECTS
-  ══════════════════════════════════════════════════════════ -->
-  <section id="projects" class="scene scene--projects" aria-label="Projects">
+  <!-- SCENE 3 — PROJECTS -->
+  <section id="projects" class="scene scene--projects">
     <div class="section-header">
       <div class="section-label">SELECTED WORK</div>
       <h2 class="section-title">Things I've <em>built.</em></h2>
     </div>
-
     <div class="projects-grid">
 
-      <article class="project-card magnetic" data-color="#06FFA5">
+      <article class="project-card magnetic">
         <div class="project-num">01</div>
         <div class="project-body">
           <h3 class="project-name">Ocular AI</h3>
           <p class="project-brief">Smartphone-based refractive error detection using screen photorefraction and real-time pupil tracking. No hardware. No clinic.</p>
-          <p class="project-detail">A clinical-grade screening tool that uses only a smartphone screen and camera to detect myopia, hyperopia and astigmatism — making specialist eye care accessible without any equipment.</p>
+          <p class="project-detail">A clinical-grade screening tool that uses only a smartphone screen and camera to detect myopia, hyperopia and astigmatism — making eye care accessible without any equipment.</p>
           <div class="pill-row">
-            <span class="pill">Python</span>
-            <span class="pill">OpenCV</span>
-            <span class="pill">Computer Vision</span>
-            <span class="pill">Streamlit</span>
+            <span class="pill">Python</span><span class="pill">OpenCV</span>
+            <span class="pill">Computer Vision</span><span class="pill">Streamlit</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/thesouravburman/ocular-ai" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
@@ -160,17 +122,15 @@
         </div>
       </article>
 
-      <article class="project-card magnetic" data-color="#FBBF24">
+      <article class="project-card magnetic">
         <div class="project-num">02</div>
         <div class="project-body">
           <h3 class="project-name">Vehicle Classifier</h3>
-          <p class="project-brief">Real-time traffic classification into 5 vehicle types using deep learning. Built at Samsung R&amp;D Institute.</p>
-          <p class="project-detail">Production-grade YOLOv8 pipeline detecting bikes, cars, trucks, buses and auto-rickshaws from live camera feeds — engineered and tested inside a real R&amp;D environment.</p>
+          <p class="project-brief">Real-time traffic classification into 5 vehicle types using deep learning. Built during Samsung R&amp;D internship.</p>
+          <p class="project-detail">Production-grade YOLOv8 pipeline detecting bikes, cars, trucks, buses and auto-rickshaws from live camera feeds — engineered inside a real R&amp;D environment.</p>
           <div class="pill-row">
-            <span class="pill">Python</span>
-            <span class="pill">YOLOv8</span>
-            <span class="pill">Deep Learning</span>
-            <span class="pill">REST API</span>
+            <span class="pill">Python</span><span class="pill">YOLOv8</span>
+            <span class="pill">Deep Learning</span><span class="pill">REST API</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/thesouravburman/vehicle-classifier" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
@@ -179,40 +139,36 @@
         </div>
       </article>
 
-      <article class="project-card magnetic" data-color="#A78BFA">
+      <article class="project-card magnetic">
         <div class="project-num">03</div>
         <div class="project-body">
           <h3 class="project-name">Market Sentiment Analyser</h3>
-          <p class="project-brief">NLP pipeline classifying product reviews as positive, negative or neutral — with real-time visualisations.</p>
+          <p class="project-brief">NLP pipeline classifying product reviews as positive, negative or neutral — with real-time visualisations and CSV batch upload.</p>
           <p class="project-detail">Paste text or upload thousands of reviews as CSV and get instant polarity analysis, trend charts, and exportable insights from a full sentiment intelligence dashboard.</p>
           <div class="pill-row">
-            <span class="pill">Python</span>
-            <span class="pill">NLP</span>
-            <span class="pill">VADER</span>
-            <span class="pill">Plotly</span>
+            <span class="pill">Python</span><span class="pill">NLP</span>
+            <span class="pill">VADER</span><span class="pill">Plotly</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/thesouravburman/market-sentiment-analyser" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-            <a href="https://share.streamlit.io/user/thesouravburman" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+            <a href="https://market-sentiment-analyser.streamlit.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
           </div>
         </div>
       </article>
 
-      <article class="project-card magnetic" data-color="#F97316">
+      <article class="project-card magnetic">
         <div class="project-num">04</div>
         <div class="project-body">
           <h3 class="project-name">Sales Lead Scorer</h3>
-          <p class="project-brief">ML model predicting lead conversion probability from behavioural and demographic sales data.</p>
+          <p class="project-brief">ML model predicting lead conversion probability from behavioural and demographic data. Inspired by real marketing work at MyGlamm.</p>
           <p class="project-detail">Gradient Boosting classifier trained on 1,200 synthetic leads — scores incoming leads 0–100%, with full pipeline analytics and model explainability dashboard.</p>
           <div class="pill-row">
-            <span class="pill">Python</span>
-            <span class="pill">Scikit-learn</span>
-            <span class="pill">GBM</span>
-            <span class="pill">Data Science</span>
+            <span class="pill">Python</span><span class="pill">Scikit-learn</span>
+            <span class="pill">GBM</span><span class="pill">Data Science</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/thesouravburman/sales-lead-scorer" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-            <a href="https://share.streamlit.io/user/thesouravburman" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+            <a href="https://sales-lead-scorer.streamlit.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
           </div>
         </div>
       </article>
@@ -220,26 +176,20 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 4 ▸ TIMELINE / JOURNEY
-  ══════════════════════════════════════════════════════════ -->
-  <section id="journey" class="scene scene--journey" aria-label="Journey">
+  <!-- SCENE 4 — TIMELINE -->
+  <section id="journey" class="scene scene--journey">
     <div class="section-header">
       <div class="section-label">JOURNEY</div>
       <h2 class="section-title">The <em>chapters.</em></h2>
     </div>
-
     <div class="timeline">
-      <div class="timeline-rail">
-        <div class="timeline-fill" id="timelineFill"></div>
-      </div>
-
+      <div class="timeline-rail"><div class="timeline-fill" id="timelineFill"></div></div>
       <div class="timeline-nodes">
 
         <div class="tl-node reveal-node">
           <div class="tl-dot"></div>
           <div class="tl-content">
-            <div class="tl-year">2021</div>
+            <div class="tl-year">Aug 2023</div>
             <div class="tl-title">The Beginning</div>
             <p class="tl-desc">Enrolled in B.Tech Computer Science Engineering at Brainware University, Kolkata. The obsession with AI begins.</p>
           </div>
@@ -249,8 +199,8 @@
           <div class="tl-dot"></div>
           <div class="tl-content">
             <div class="tl-year">2024</div>
-            <div class="tl-title">Samsung R&amp;D Institute</div>
-            <p class="tl-desc">Interned at Samsung R&amp;D Institute, Kolkata — working on AI and Computer Vision. Built production-grade vehicle classification systems in a real engineering environment.</p>
+            <div class="tl-title">Samsung R&amp;D Institute — Internship</div>
+            <p class="tl-desc">Interned at Samsung R&amp;D Institute, Kolkata — built production-grade AI and Computer Vision systems in a real engineering environment.</p>
           </div>
         </div>
 
@@ -258,8 +208,8 @@
           <div class="tl-dot"></div>
           <div class="tl-content">
             <div class="tl-year">2024</div>
-            <div class="tl-title">Government Recognition</div>
-            <p class="tl-desc">Received MeitY (Ministry of Electronics &amp; IT, Government of India) certification — formal recognition of the AI work completed during the internship.</p>
+            <div class="tl-title">MeitY Government Certification</div>
+            <p class="tl-desc">Received formal certification from the Ministry of Electronics &amp; IT, Government of India for AI work completed during the internship.</p>
           </div>
         </div>
 
@@ -267,17 +217,44 @@
           <div class="tl-dot"></div>
           <div class="tl-content">
             <div class="tl-year">2024</div>
-            <div class="tl-title">4 Projects Shipped</div>
-            <p class="tl-desc">Built and deployed four production-grade AI/ML applications — from eye diagnostics to NLP sentiment pipelines. All live on Streamlit Cloud.</p>
+            <div class="tl-title">4 AI/ML Projects Shipped</div>
+            <p class="tl-desc">Built and deployed four production AI/ML applications — from eye diagnostics to NLP sentiment pipelines. All live on Streamlit Cloud.</p>
+          </div>
+        </div>
+
+        <div class="tl-node reveal-node">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-year">Feb 2026</div>
+            <div class="tl-title">ISI Kolkata — Cryptographic Security</div>
+            <p class="tl-desc">Completed a 5-day MeitY-funded intensive at the Indian Statistical Institute on Privacy Preserving Cryptography, Advanced Encryption, Authentication &amp; Zero-Knowledge Proofs.</p>
+          </div>
+        </div>
+
+        <div class="tl-node reveal-node">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-year">Mar 2026</div>
+            <div class="tl-title">Qualcomm — Deep Tech Entrepreneurship · 100%</div>
+            <p class="tl-desc">Completed Qualcomm's Entrepreneurship Foundations for Deep Tech Startups programme via L2Pro India with a perfect score.</p>
+          </div>
+        </div>
+
+        <div class="tl-node reveal-node">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-year">Apr 2026</div>
+            <div class="tl-title">Microsoft + SEBI Certifications</div>
+            <p class="tl-desc">Completed Microsoft × Simplilearn Introduction to MS Excel and participated in SEBI's National Financial Literacy Quiz 2026 — broadening expertise beyond pure engineering.</p>
           </div>
         </div>
 
         <div class="tl-node reveal-node tl-node--active">
           <div class="tl-dot tl-dot--pulse"></div>
           <div class="tl-content">
-            <div class="tl-year">2025 →</div>
+            <div class="tl-year">Jul 2027 →</div>
             <div class="tl-title">Final Year. Open to Opportunities.</div>
-            <p class="tl-desc">Final year of B.Tech. Actively seeking AI/ML roles, research collaborations, and ambitious problems worth solving.</p>
+            <p class="tl-desc">Completing B.Tech CSE at Brainware University. Actively seeking AI/ML roles, research collaborations, and ambitious problems worth solving.</p>
           </div>
         </div>
 
@@ -285,22 +262,19 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 5 ▸ SKILLS — BENTO GRID
-  ══════════════════════════════════════════════════════════ -->
-  <section id="skills" class="scene scene--skills" aria-label="Skills">
+  <!-- SCENE 5 — SKILLS BENTO -->
+  <section id="skills" class="scene scene--skills">
     <div class="section-header">
       <div class="section-label">ARSENAL</div>
       <h2 class="section-title">What I <em>wield.</em></h2>
     </div>
-
     <div class="bento-grid">
 
       <div class="bento bento--hero reveal-bento">
         <div class="bento-glyph">⬡</div>
         <div class="bento-name">Python</div>
         <div class="bento-sub">Primary Language</div>
-        <div class="bento-bar"><div class="bento-fill" style="--pct: 95%"></div></div>
+        <div class="bento-bar"><div class="bento-fill" style="--pct:95%"></div></div>
         <div class="bento-badge">Core</div>
       </div>
 
@@ -335,87 +309,69 @@
       </div>
 
       <div class="bento reveal-bento">
+        <div class="bento-glyph">🔐</div>
+        <div class="bento-name">Cryptography</div>
+        <div class="bento-sub">Zero-Knowledge Proofs · Encryption</div>
+        <div class="bento-badge samsung">ISI · MeitY</div>
+      </div>
+
+      <div class="bento reveal-bento">
         <div class="bento-glyph">↗</div>
         <div class="bento-name">Deployment</div>
         <div class="bento-sub">Streamlit Cloud · GitHub Pages</div>
       </div>
 
-      <div class="bento reveal-bento">
-        <div class="bento-glyph">⇌</div>
-        <div class="bento-name">REST APIs</div>
-        <div class="bento-sub">Design · Integration · Testing</div>
-      </div>
-
       <div class="bento bento--tall reveal-bento">
         <div class="bento-glyph">⑂</div>
         <div class="bento-name">Git &amp; GitHub</div>
-        <div class="bento-sub">Version Control · Collaboration</div>
-        <div class="bento-badge samsung">Samsung Certified</div>
+        <div class="bento-sub">Version Control · API · Automation</div>
       </div>
 
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SCENE 6 ▸ CONTACT
-  ══════════════════════════════════════════════════════════ -->
-  <section id="contact" class="scene scene--contact" aria-label="Contact">
+  <!-- SCENE 6 — CONTACT -->
+  <section id="contact" class="scene scene--contact">
     <div class="contact-inner">
       <div class="section-label">GET IN TOUCH</div>
-
-      <h2 class="contact-headline reveal-contact">
-        Let's build<br /><em>something.</em>
-      </h2>
-
+      <h2 class="contact-headline reveal-contact">Let's build<br /><em>something.</em></h2>
       <p class="contact-sub reveal-contact">Open to AI/ML roles, research collaborations, freelance projects, and conversations worth having.</p>
-
       <a href="mailto:thesouravburman@gmail.com" class="email-link reveal-contact magnetic">
-        thesouravburman@gmail.com<span class="blink-cursor" aria-hidden="true">_</span>
+        thesouravburman@gmail.com<span class="blink-cursor">_</span>
       </a>
-
       <div class="social-row reveal-contact">
-
         <a href="https://github.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-
         <a href="https://linkedin.com/in/sourav-burman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-
-        <a href="https://x.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Twitter / X">
+        <a href="https://x.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Twitter">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-
         <a href="https://share.streamlit.io/user/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Streamlit">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.876 10.49L12.56.16a.751.751 0 00-1.12 0L3.124 10.49a.67.67 0 00.056.976l8.316 7.247a.751.751 0 00.988 0l8.316-7.247a.67.67 0 00.076-.976zM11.44 21.232L3.576 14.37a.67.67 0 00-1.008.203l-.84 1.98a.67.67 0 00.252.82l9.192 5.88a.751.751 0 00.84 0l9.192-5.88a.67.67 0 00.252-.82l-.84-1.98a.67.67 0 00-1.008-.203l-7.968 6.862z"/></svg>
         </a>
-
         <a href="https://facebook.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Facebook">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-
         <a href="https://instagram.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
-
         <a href="https://discord.com/users/souravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Discord">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
         </a>
-
       </div>
     </div>
-
     <footer class="site-footer">
       <span>Built by <strong>Sourav Burman</strong></span>
       <span class="sep">·</span>
       <span>Brainware University '27</span>
       <span class="sep">·</span>
-      <span>© 2025</span>
+      <span>© 2026</span>
     </footer>
   </section>
 
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
