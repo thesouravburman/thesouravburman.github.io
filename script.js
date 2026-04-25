@@ -72,15 +72,15 @@ gsap.registerPlugin(ScrollTrigger);
     drops = Array(cols).fill(1);
   }
   function draw() {
-    ctx.fillStyle = 'rgba(6,6,6,0.042)';
+    ctx.fillStyle = 'rgba(6,6,6,0.055)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.font = `${FONT_SZ}px 'JetBrains Mono',monospace`;
     for (let i=0; i<drops.length; i++) {
       const char   = CHARS[Math.floor(Math.random()*CHARS.length)];
-      const bright = drops[i] % 20 < 2;
+      const bright = drops[i] % 20 < 3;
       ctx.fillStyle = bright
-        ? 'rgba(147,197,253,0.92)'
-        : 'rgba(59,130,246,0.32)';
+        ? 'rgba(147,197,253,1)'
+        : 'rgba(96,165,250,0.55)';
       ctx.fillText(char, i*FONT_SZ, drops[i]*FONT_SZ);
       if (drops[i]*FONT_SZ > canvas.height && Math.random()>.975) drops[i]=0;
       drops[i]++;
