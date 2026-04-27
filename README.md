@@ -22,7 +22,7 @@
 
 </div>
 
-## About Me
+## About
 
 I am a third-year Computer Science Engineering student at **Brainware University, Kolkata** — specialising in AI and Computer Vision. I have built systems that detect eye conditions without any hardware, classify live traffic in real time, and read market sentiment from raw text.
 
