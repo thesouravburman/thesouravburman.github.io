@@ -55,7 +55,7 @@ Smartphone-based refractive error detection using screen photorefraction and rea
 </td>
 <td width="50%" valign="top">
 
-**🚗 &nbsp; Vehicle Classifiers**
+**🚗 &nbsp; Vehicle Classifier**
 
 Real-time traffic classification into 5 vehicle types using YOLOv8. Built during Samsung R&D internship, Kolkata.
 
