@@ -48,7 +48,7 @@ gsap.registerPlugin(ScrollTrigger);
       const r = el.getBoundingClientRect();
       const dx = e.clientX - (r.left + r.width/2);
       const dy = e.clientY - (r.top  + r.height/2);
-      const f  = el.classList.contains('project-card') ? 0.07 : 0.26;
+      const f  = el.classList.contains('featured-card') ? 0.04 : 0.26;
       gsap.to(el, { x: dx*f, y: dy*f, duration: .4, ease: 'power2.out' });
     });
     el.addEventListener('mouseleave', () => {
@@ -121,8 +121,8 @@ gsap.registerPlugin(ScrollTrigger);
   const phrases = [
     'AI Developer.',
     'Computer Vision Engineer.',
+    'Full-Stack Builder.',
     'Building things that matter.',
-    'ex-Samsung R&D.',
   ];
   let pIdx=0, cIdx=0, deleting=false;
 
@@ -146,7 +146,18 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 8. PROJECT CARDS ───────────────────────────────────── */
+/* ── 8. FEATURED CARD REVEAL ────────────────────────────── */
+(function() {
+  const card = document.querySelector('.featured-card');
+  if (!card) return;
+  gsap.fromTo(card,
+    { opacity:0, y:50 },
+    { opacity:1, y:0, duration:1.1, ease:'power3.out',
+      scrollTrigger: { trigger:card, start:'top 86%' } }
+  );
+})();
+
+/* ── 9. PROJECT CARDS ───────────────────────────────────── */
 (function() {
   document.querySelectorAll('.project-card').forEach((card,i) => {
     gsap.fromTo(card,
@@ -157,7 +168,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 9. TIMELINE ────────────────────────────────────────── */
+/* ── 10. TIMELINE ───────────────────────────────────────── */
 (function() {
   const fill  = document.getElementById('timelineFill');
   const nodes = document.querySelectorAll('.tl-node');
@@ -177,7 +188,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 10. BENTO GRID ─────────────────────────────────────── */
+/* ── 11. BENTO GRID ─────────────────────────────────────── */
 (function() {
   document.querySelectorAll('.bento').forEach((b,i) => {
     ScrollTrigger.create({
@@ -187,7 +198,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 11. CONTACT ────────────────────────────────────────── */
+/* ── 12. CONTACT ────────────────────────────────────────── */
 (function() {
   document.querySelectorAll(
     '.contact-headline,.contact-sub,.email-link,.social-row'
@@ -199,7 +210,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 12. SECTION TITLES ─────────────────────────────────── */
+/* ── 13. SECTION TITLES ─────────────────────────────────── */
 (function() {
   document.querySelectorAll('.section-title').forEach(t => {
     gsap.fromTo(t, { opacity:0, y:36 }, {
@@ -215,7 +226,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 13. HERO PARALLAX ──────────────────────────────────── */
+/* ── 14. HERO PARALLAX ──────────────────────────────────── */
 (function() {
   const content = document.querySelector('.hero-content');
   if (!content) return;
@@ -225,7 +236,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── 14. COUNT UP ───────────────────────────────────────── */
+/* ── 15. COUNT UP ───────────────────────────────────────── */
 (function() {
   document.querySelectorAll('.stat-num').forEach(el => {
     const target = parseInt(el.textContent);
