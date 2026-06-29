@@ -2,8 +2,6 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Cormorant+Garamond&weight=300&size=48&duration=3000&pause=1000&color=C9A84C&center=true&vCenter=true&width=800&height=100&lines=Sourav+Burman" alt="Sourav Burman" />
 
-<br/>
-
 ### *Building systems that solve real problems.*
 
 <br/>
@@ -38,19 +36,44 @@ I am not interested in average things. I am obsessed with the intersection of pr
 
 ## Selected Work
 
+<!-- ── FLAGSHIP ───────────────────────────────────────────── -->
+
+<table>
+<tr>
+<td colspan="2" valign="top">
+
+### 🔥 &nbsp; IGNIS — Ignite What You're Made Of
+**Flagship · Full-Stack Web Application**
+
+A complete personalised fitness platform — not a generic plan generator. IGNIS calculates your BMI, BMR, TDEE and maintenance calories, then builds a fully customised 30-day calisthenics programme around your schedule, goals, and physical profile. Gamified progress tracker with streak counters, milestone badges, and a 30-day calendar view.
+
+Built with a production-grade stack: Next.js frontend, Supabase backend, deployed on Vercel. Designed to be market-ready from day one.
+
+[![Live App](https://img.shields.io/badge/▶_LIVE_APP-igniswork.vercel.app-FF4500?style=flat-square&labelColor=0d0d0d)](https://igniswork.vercel.app)
+
+`Next.js` &nbsp; `React` &nbsp; `Supabase` &nbsp; `Vercel` &nbsp; `TypeScript` &nbsp; `Tailwind CSS`
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<!-- ── OTHER PROJECTS ────────────────────────────────────── -->
+
 <table>
 <tr>
 <td width="50%" valign="top">
 
-**👁 &nbsp; Ocular AI**
+**👁 &nbsp; Ocular AI &nbsp;`v2`**
 
-Smartphone-based refractive error detection using screen photorefraction and real-time pupil tracking. No hardware. No clinic.
+Smartphone-based refractive error detection using screen photorefraction and real-time pupil tracking. No hardware. No clinic. Published as an independent research project — proprietary licence.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-ocular--ai.streamlit.app-06FFA5?style=flat-square&labelColor=0d0d0d)](https://ocular-ai.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/▶_LIVE_DEMO-ocularai.vercel.app-06FFA5?style=flat-square&labelColor=0d0d0d)](https://ocularai.vercel.app)
 &nbsp;
 [![GitHub](https://img.shields.io/badge/Source-GitHub-E8C97A?style=flat-square&labelColor=0d0d0d&logo=github)](https://github.com/thesouravburman/ocular-ai)
 
-`Python` &nbsp; `OpenCV` &nbsp; `Computer Vision` &nbsp; `Streamlit`
+`Python` &nbsp; `OpenCV` &nbsp; `Computer Vision` &nbsp; `Vercel`
 
 </td>
 <td width="50%" valign="top">
@@ -59,7 +82,7 @@ Smartphone-based refractive error detection using screen photorefraction and rea
 
 Real-time traffic classification into 5 vehicle types using YOLOv8. Built during Samsung R&D internship, Kolkata.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-vehicles--classifier.streamlit.app-FBBF24?style=flat-square&labelColor=0d0d0d)](https://vehicles-classifier.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/▶_LIVE_DEMO-vehicles--classifier.streamlit.app-FBBF24?style=flat-square&labelColor=0d0d0d)](https://vehicles-classifier.streamlit.app)
 &nbsp;
 [![GitHub](https://img.shields.io/badge/Source-GitHub-E8C97A?style=flat-square&labelColor=0d0d0d&logo=github)](https://github.com/thesouravburman/vehicle-classifier)
 
@@ -77,7 +100,7 @@ Real-time traffic classification into 5 vehicle types using YOLOv8. Built during
 
 NLP pipeline classifying product reviews as positive, negative or neutral — with real-time visualisations and CSV batch upload.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-market--sentiment.streamlit.app-A78BFA?style=flat-square&labelColor=0d0d0d)](https://market-sentiment-analyser.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/▶_LIVE_DEMO-market--sentiment.streamlit.app-A78BFA?style=flat-square&labelColor=0d0d0d)](https://market-sentiment-analyser.streamlit.app)
 &nbsp;
 [![GitHub](https://img.shields.io/badge/Source-GitHub-E8C97A?style=flat-square&labelColor=0d0d0d&logo=github)](https://github.com/thesouravburman/market-sentiment-analyser)
 
@@ -90,7 +113,7 @@ NLP pipeline classifying product reviews as positive, negative or neutral — wi
 
 ML model predicting lead conversion probability from behavioural and demographic sales data. Inspired by real marketing experience.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-sales--lead--scorer.streamlit.app-F97316?style=flat-square&labelColor=0d0d0d)](https://sales-lead-scorer.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/▶_LIVE_DEMO-sales--lead--scorer.streamlit.app-F97316?style=flat-square&labelColor=0d0d0d)](https://sales-lead-scorer.streamlit.app)
 &nbsp;
 [![GitHub](https://img.shields.io/badge/Source-GitHub-E8C97A?style=flat-square&labelColor=0d0d0d&logo=github)](https://github.com/thesouravburman/sales-lead-scorer)
 
@@ -112,12 +135,14 @@ ML model predicting lead conversion probability from behavioural and demographic
 
 | Domain | Technologies |
 |:--|:--|
-| **Languages** | ![Python](https://img.shields.io/badge/Python-C9A84C?style=flat-square&logo=python&logoColor=0d0d0d) |
+| **Languages** | ![Python](https://img.shields.io/badge/Python-C9A84C?style=flat-square&logo=python&logoColor=0d0d0d) &nbsp; ![TypeScript](https://img.shields.io/badge/TypeScript-E8C97A?style=flat-square&logo=typescript&logoColor=0d0d0d) &nbsp; ![JavaScript](https://img.shields.io/badge/JavaScript-C9A84C?style=flat-square&logo=javascript&logoColor=0d0d0d) |
+| **Frontend** | ![Next.js](https://img.shields.io/badge/Next.js-E8C97A?style=flat-square&logo=nextdotjs&logoColor=0d0d0d) &nbsp; ![React](https://img.shields.io/badge/React-C9A84C?style=flat-square&logo=react&logoColor=0d0d0d) &nbsp; ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-E8C97A?style=flat-square&logo=tailwindcss&logoColor=0d0d0d) |
+| **Backend & DB** | ![Supabase](https://img.shields.io/badge/Supabase-C9A84C?style=flat-square&logo=supabase&logoColor=0d0d0d) |
 | **Computer Vision** | ![OpenCV](https://img.shields.io/badge/OpenCV-E8C97A?style=flat-square&logo=opencv&logoColor=0d0d0d) &nbsp; ![YOLOv8](https://img.shields.io/badge/YOLOv8-C9A84C?style=flat-square) |
 | **Deep Learning** | ![TensorFlow](https://img.shields.io/badge/TensorFlow-E8C97A?style=flat-square&logo=tensorflow&logoColor=0d0d0d) &nbsp; ![PyTorch](https://img.shields.io/badge/PyTorch-C9A84C?style=flat-square&logo=pytorch&logoColor=0d0d0d) |
 | **ML & Data Science** | ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-E8C97A?style=flat-square&logo=scikit-learn&logoColor=0d0d0d) &nbsp; ![Pandas](https://img.shields.io/badge/Pandas-C9A84C?style=flat-square&logo=pandas&logoColor=0d0d0d) &nbsp; ![Plotly](https://img.shields.io/badge/Plotly-E8C97A?style=flat-square&logo=plotly&logoColor=0d0d0d) |
 | **NLP** | ![HuggingFace](https://img.shields.io/badge/HuggingFace-C9A84C?style=flat-square&logo=huggingface&logoColor=0d0d0d) &nbsp; ![VADER](https://img.shields.io/badge/VADER-E8C97A?style=flat-square) |
-| **Deployment** | ![Streamlit](https://img.shields.io/badge/Streamlit-C9A84C?style=flat-square&logo=streamlit&logoColor=0d0d0d) &nbsp; ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-E8C97A?style=flat-square&logo=github&logoColor=0d0d0d) |
+| **Deployment** | ![Vercel](https://img.shields.io/badge/Vercel-C9A84C?style=flat-square&logo=vercel&logoColor=0d0d0d) &nbsp; ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-E8C97A?style=flat-square&logo=github&logoColor=0d0d0d) &nbsp; ![Streamlit](https://img.shields.io/badge/Streamlit-C9A84C?style=flat-square&logo=streamlit&logoColor=0d0d0d) |
 | **Cryptography** | ![ZKP](https://img.shields.io/badge/Zero--Knowledge_Proofs-C9A84C?style=flat-square) &nbsp; ![MeitY](https://img.shields.io/badge/ISI_·_MeitY_Certified-E8C97A?style=flat-square) |
 
 </div>
@@ -137,10 +162,11 @@ ML model predicting lead conversion probability from behavioural and demographic
 | Aug 2023 | Enrolled in B.Tech Computer Science Engineering — Brainware University, Kolkata |
 | 2024 | Interned at **Samsung R&D Institute, Kolkata** — AI & Computer Vision |
 | 2024 | **MeitY Government Certification** — Ministry of Electronics & IT, India |
-| 2024 | Shipped 4 production AI/ML projects — all live on Streamlit Cloud |
+| 2024 | Shipped first 4 AI/ML projects — live on Streamlit Cloud |
 | Feb 2026 | **Indian Statistical Institute, Kolkata** — 5-day MeitY-funded course on Cryptographic Security, Advanced Encryption & Zero-Knowledge Proofs |
 | Mar 2026 | **Qualcomm × L2Pro India** — Entrepreneurship Foundations for Deep Tech Startups · 100% score |
 | Apr 2026 | **Microsoft × Simplilearn** — Introduction to MS Excel · **SEBI / NISM** — National Financial Literacy Quiz |
+| Jun 2026 | Launched **IGNIS** — full-stack fitness platform on Vercel + Supabase · Ocular AI upgraded to v2 |
 | Jul 2027 | B.Tech graduation — actively seeking AI/ML roles and research collaborations |
 
 </div>
@@ -202,5 +228,3 @@ ML model predicting lead conversion probability from behavioural and demographic
 <br/>
 
 </div>
-
-
