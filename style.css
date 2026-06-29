@@ -14,6 +14,8 @@
   --gold-dim:    rgba(201,168,76,.12);
   --blue:        #3B82F6;
   --blue-bright: #60A5FA;
+  --fire:        #FF4500;
+  --fire-dim:    rgba(255,69,0,.15);
   --white:       #F5F5F0;
   --white-dim:   rgba(245,245,240,.55);
   --border:      rgba(201,168,76,.16);
@@ -58,7 +60,6 @@ a { color: inherit; text-decoration: none; }
   width: 6px; height: 6px;
   background: var(--gold);
   box-shadow: 0 0 8px var(--gold), 0 0 20px rgba(201,168,76,.5);
-  transition: width .2s, height .2s;
 }
 .cursor-ring {
   width: 36px; height: 36px;
@@ -249,6 +250,95 @@ a { color: inherit; text-decoration: none; }
 ══════════════════════════════════════════════════════════ */
 .scene--projects { padding: 8rem 5vw; background: var(--bg-2); }
 
+/* ── IGNIS FEATURED CARD ────────────────────────────────── */
+.featured-card {
+  max-width: 1160px; margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #0e0a08, #120d08);
+  border: 1px solid rgba(255,69,0,.35);
+  border-radius: 16px; padding: 2.8rem;
+  position: relative; overflow: hidden;
+  box-shadow: 0 0 60px rgba(255,69,0,.08), 0 0 120px rgba(255,69,0,.04);
+  opacity: 0; transform: translateY(36px);
+  transition: border-color .4s, box-shadow .4s;
+}
+.featured-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(255,69,0,.06), transparent 60%);
+  pointer-events: none;
+}
+.featured-card:hover {
+  border-color: rgba(255,69,0,.6);
+  box-shadow: 0 0 80px rgba(255,69,0,.14), 0 24px 60px rgba(0,0,0,.5);
+}
+.featured-label {
+  font-family: var(--font-mono); font-size: .62rem;
+  letter-spacing: .25em; color: var(--fire); opacity: .75;
+  margin-bottom: 1.4rem;
+}
+.featured-inner {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 3rem; align-items: center;
+}
+.featured-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300; letter-spacing: -.02em;
+  color: var(--white); line-height: 1;
+  margin-bottom: .4rem;
+}
+.featured-tagline {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-style: italic;
+  color: var(--fire); opacity: .8;
+  margin-bottom: 1.2rem;
+}
+.featured-desc {
+  font-size: .92rem; color: var(--white-dim);
+  line-height: 1.8; margin-bottom: 1.4rem;
+  max-width: 600px;
+}
+.featured-right {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.featured-glow-box {
+  width: 140px; height: 140px;
+  border: 1px solid rgba(255,69,0,.25);
+  border-radius: 16px;
+  background: rgba(255,69,0,.04);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: .3rem;
+  box-shadow: 0 0 30px rgba(255,69,0,.08);
+}
+.ignis-symbol { font-size: 2rem; line-height: 1; }
+.ignis-stat {
+  font-family: var(--font-display);
+  font-size: 3rem; font-weight: 300;
+  color: var(--fire); line-height: 1;
+}
+.ignis-stat-label {
+  font-family: var(--font-mono); font-size: .55rem;
+  letter-spacing: .2em; color: rgba(255,69,0,.5);
+}
+
+/* Pill fire variant */
+.pill--fire {
+  border-color: rgba(255,69,0,.3) !important;
+  color: rgba(255,150,100,.7) !important;
+}
+
+/* ── VERSION BADGE ──────────────────────────────────────── */
+.version-badge {
+  font-family: var(--font-mono); font-size: .55rem;
+  letter-spacing: .1em; padding: .18rem .5rem;
+  border: 1px solid rgba(6,255,165,.35);
+  border-radius: 20px; color: #06FFA5;
+  background: rgba(6,255,165,.06);
+  vertical-align: middle; margin-left: .4rem;
+}
+
+/* ── PROJECT CARDS GRID ─────────────────────────────────── */
 .projects-grid {
   max-width: 1160px; margin: 0 auto;
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
@@ -535,6 +625,8 @@ a { color: inherit; text-decoration: none; }
   .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .code-card { position: static; }
   .projects-grid { grid-template-columns: 1fr; }
+  .featured-inner { grid-template-columns: 1fr; }
+  .featured-right { display: none; }
   .bento-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 135px; }
   .bento--hero { grid-column: span 2; }
   .bento--wide { grid-column: span 2; }
@@ -554,6 +646,6 @@ a { color: inherit; text-decoration: none; }
   *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
   .cursor-dot,.cursor-ring { display: none; }
   body { cursor: auto; }
-  .about-sentence,.tl-node,.bento,.project-card,
+  .about-sentence,.tl-node,.bento,.project-card,.featured-card,
   .contact-headline,.contact-sub,.email-link,.social-row { opacity:1 !important; transform:none !important; }
 }
