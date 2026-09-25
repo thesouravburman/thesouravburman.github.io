@@ -1,183 +1,235 @@
 /* ============================================================
-   script.js — thesouravburman.github.io
-   All animations, interactions, curtain, nav, spotlight
+   script.js — souravburman.me v3.0
+   All interactions, animations, rain, music, theme, video
 ============================================================ */
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ── UTILS ───────────────────────────────────────────────── */
+const isMobile = () => window.innerWidth <= 768;
+const isTouch  = () => window.matchMedia('(hover: none)').matches;
+
 /* ── 1. PROGRESS BAR ────────────────────────────────────── */
 (function() {
-  const bar = document.createElement('div');
-  bar.id = 'progressBar';
-  document.body.appendChild(bar);
+  const bar = document.getElementById('progressBar');
+  if (!bar) return;
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
     bar.style.width = pct + '%';
+  }, { passive: true });
+})();
+
+/* ── 2. THEME TOGGLE ────────────────────────────────────── */
+(function() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const root = document.documentElement;
+
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    // Refresh binary rain colors
+    window.dispatchEvent(new Event('themechange'));
   });
 })();
 
-/* ── 2. CINEMATIC CURTAIN ───────────────────────────────── */
+/* ── 3. CURTAIN ─────────────────────────────────────────── */
 (function() {
   const curtain = document.getElementById('curtain');
   if (!curtain) return;
   setTimeout(() => curtain.classList.add('hidden'), 1800);
 })();
 
-/* ── 3. LOCAL TIME GREETING ─────────────────────────────── */
+/* ── 4. LOCAL TIME GREETING ─────────────────────────────── */
 (function() {
   const el = document.getElementById('heroTime');
   if (!el) return;
-
-  function getGreeting(hour) {
-    if (hour >= 5  && hour < 12) return 'Good morning';
-    if (hour >= 12 && hour < 17) return 'Good afternoon';
-    if (hour >= 17 && hour < 21) return 'Good evening';
+  function greet(h) {
+    if (h >= 5  && h < 12) return 'Good morning';
+    if (h >= 12 && h < 17) return 'Good afternoon';
+    if (h >= 17 && h < 21) return 'Good evening';
     return 'Good night';
   }
-
   function update() {
-    const now = new Date();
-    const kol = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-    const h   = kol.getHours();
-    const m   = String(kol.getMinutes()).padStart(2, '0');
-    const ampm= h >= 12 ? 'PM' : 'AM';
-    const h12 = h % 12 || 12;
-    el.textContent = `${getGreeting(h)} — it's ${h12}:${m} ${ampm} in Kolkata`;
+    const kol  = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const h    = kol.getHours();
+    const m    = String(kol.getMinutes()).padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    el.textContent = `${greet(h)} — it's ${h % 12 || 12}:${m} ${ampm} in Kolkata`;
     el.classList.add('visible');
   }
   update();
   setInterval(update, 60000);
 })();
 
-/* ── 4. CURSOR ──────────────────────────────────────────── */
+/* ── 5. CURSOR ──────────────────────────────────────────── */
 (function() {
-  const dot      = document.getElementById('cursorDot');
-  const ring     = document.getElementById('cursorRing');
-  const spotlight= document.getElementById('cursorSpotlight');
+  if (isTouch()) return;
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const spot = document.getElementById('cursorSpotlight');
   if (!dot || !ring) return;
   let mx=0, my=0, rx=0, ry=0;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx+'px'; dot.style.top = my+'px';
-    if (spotlight) { spotlight.style.left = mx+'px'; spotlight.style.top = my+'px'; }
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    if (spot) { spot.style.left = mx + 'px'; spot.style.top = my + 'px'; }
   });
   (function loop() {
-    rx += (mx-rx)*.12; ry += (my-ry)*.12;
-    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
     requestAnimationFrame(loop);
   })();
 
-  document.querySelectorAll('a,button,.social-btn,.email-link,.btn').forEach(el => {
+  document.querySelectorAll('a, button, .project-card, .bento, .social-btn, .btn').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
   });
-  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
-  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; ring.style.opacity='1'; });
+  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
 })();
 
-/* ── 5. MAGNETIC PULL ───────────────────────────────────── */
+/* ── 6. MAGNETIC PULL ───────────────────────────────────── */
 (function() {
+  if (isTouch()) return;
   document.querySelectorAll('.magnetic').forEach(el => {
     el.addEventListener('mousemove', e => {
-      const r = el.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width/2);
-      const dy = e.clientY - (r.top  + r.height/2);
-      const f  = el.classList.contains('featured-card') ? 0.04 : 0.26;
-      gsap.to(el, { x:dx*f, y:dy*f, duration:.4, ease:'power2.out' });
+      const r  = el.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      const f  = el.classList.contains('featured-card') ? .04 : .26;
+      gsap.to(el, { x: dx * f, y: dy * f, duration: .4, ease: 'power2.out' });
     });
     el.addEventListener('mouseleave', () => {
-      gsap.to(el, { x:0, y:0, duration:.6, ease:'elastic.out(1,0.5)' });
+      gsap.to(el, { x: 0, y: 0, duration: .6, ease: 'elastic.out(1,.5)' });
     });
   });
 })();
 
-/* ── 6. BINARY RAIN ─────────────────────────────────────── */
-(function() {
-  const canvas = document.getElementById('binaryRain');
+/* ── 7. BINARY RAIN FACTORY ─────────────────────────────── */
+function createRain(canvas, opts = {}) {
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const CHARS = '01'; const FONT_SZ = 13;
+  const ctx    = canvas.getContext('2d');
+  const FONT   = opts.fontSize || 13;
+  const CHARS  = '01';
   let cols, drops;
+  const dimFactor = opts.dim || 1;
+
+  function getColors() {
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    return light
+      ? { lead: `rgba(155,110,26,${0.75 * dimFactor})`, trail: `rgba(155,110,26,${0.28 * dimFactor})`, fade: 'rgba(244,239,230,0.055)' }
+      : { lead: `rgba(147,197,253,${1    * dimFactor})`, trail: `rgba(96,165,250,${0.5 * dimFactor})`,  fade: 'rgba(6,6,6,0.055)' };
+  }
 
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    cols  = Math.floor(canvas.width / FONT_SZ);
+    canvas.width  = canvas.offsetWidth  || canvas.parentElement?.offsetWidth  || window.innerWidth;
+    canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || window.innerHeight;
+    cols  = Math.floor(canvas.width / FONT);
     drops = Array(cols).fill(1);
   }
+
   function draw() {
-    ctx.fillStyle = 'rgba(6,6,6,0.055)';
+    const c = getColors();
+    ctx.fillStyle = c.fade;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = `${FONT_SZ}px 'JetBrains Mono',monospace`;
-    for (let i=0; i<drops.length; i++) {
-      const char   = CHARS[Math.floor(Math.random()*CHARS.length)];
+    ctx.font = `${FONT}px 'JetBrains Mono', monospace`;
+    for (let i = 0; i < drops.length; i++) {
+      const char   = CHARS[Math.floor(Math.random() * CHARS.length)];
       const bright = drops[i] % 20 < 3;
-      ctx.fillStyle = bright ? 'rgba(147,197,253,1)' : 'rgba(96,165,250,0.55)';
-      ctx.fillText(char, i*FONT_SZ, drops[i]*FONT_SZ);
-      if (drops[i]*FONT_SZ > canvas.height && Math.random()>.975) drops[i]=0;
+      ctx.fillStyle = bright ? c.lead : c.trail;
+      ctx.fillText(char, i * FONT, drops[i] * FONT);
+      if (drops[i] * FONT > canvas.height && Math.random() > .975) drops[i] = 0;
       drops[i]++;
     }
   }
+
   resize();
   window.addEventListener('resize', resize);
-  setInterval(draw, 40);
-})();
+  window.addEventListener('themechange', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
 
-/* ── 7. HERO NAME ───────────────────────────────────────── */
+  const interval = setInterval(draw, opts.interval || 40);
+  return () => clearInterval(interval);
+}
+
+/* Hero binary rain */
+createRain(document.getElementById('binaryRain'));
+
+/* Section rains — slower, dimmer */
+createRain(document.getElementById('processRain'), { dim: .55, interval: 55 });
+createRain(document.getElementById('journeyRain'), { dim: .4,  interval: 60 });
+createRain(document.getElementById('contactRain'), { dim: .45, interval: 55 });
+
+/* ── 8. HERO ANIMATIONS ─────────────────────────────────── */
 (function() {
-  const nameEl = document.getElementById('heroName');
+  const nameEl  = document.getElementById('heroName');
   if (!nameEl) return;
+
   const text = 'Sourav Burman';
   nameEl.innerHTML = [...text].map(c =>
     c === ' ' ? '<span class="space"></span>' : `<span class="letter">${c}</span>`
   ).join('');
 
-  const letters = nameEl.querySelectorAll('.letter');
-  const eyebrow = document.querySelector('.hero-eyebrow');
-  const meta    = document.getElementById('heroMeta');
-  const now     = document.getElementById('heroNow');
-  const cta     = document.getElementById('heroCta');
-  const scroll  = document.getElementById('scrollIndicator');
+  const letters  = nameEl.querySelectorAll('.letter');
+  const eyebrow  = document.querySelector('.hero-eyebrow');
+  const meta     = document.getElementById('heroMeta');
+  const now      = document.getElementById('heroNow');
+  const cta      = document.getElementById('heroCta');
+  const scroll   = document.getElementById('scrollIndicator');
+  const videoCard= document.getElementById('heroVideoCard');
 
-  gsap.timeline({ delay: 2 })  // starts after curtain
-    .to(eyebrow, { opacity:1, duration:1, ease:'power2.out' })
-    .to(letters, { opacity:1, y:0, rotate:0, duration:.85, stagger:.042, ease:'power4.out' }, '-=0.4')
-    .to(meta,    { opacity:1, duration:.75, ease:'power2.out' }, '-=0.3')
-    .to(now,     { opacity:1, duration:.6,  ease:'power2.out' }, '-=0.2')
-    .to(cta,     { opacity:1, duration:.6,  ease:'power2.out' }, '-=0.2')
-    .to(scroll,  { opacity:1, duration:.6,  ease:'power2.out' }, '-=0.2');
+  gsap.timeline({ delay: 2.1 })
+    .to(eyebrow, { opacity: 1, duration: .9, ease: 'power2.out' })
+    .to(letters, { opacity: 1, y: 0, rotate: 0, duration: .8, stagger: .04, ease: 'power4.out' }, '-=.4')
+    .to(meta,    { opacity: 1, duration: .7, ease: 'power2.out' }, '-=.3')
+    .to(now,     { opacity: 1, duration: .6, ease: 'power2.out' }, '-=.2')
+    .to(cta,     { opacity: 1, duration: .6, ease: 'power2.out' }, '-=.2')
+    .to(scroll,  { opacity: 1, duration: .6, ease: 'power2.out' }, '-=.2')
+    .call(() => { if (videoCard) videoCard.classList.add('visible'); }, null, '+=.3');
 })();
 
-/* ── 8. TYPEWRITER ──────────────────────────────────────── */
+/* ── 9. TYPEWRITER ──────────────────────────────────────── */
 (function() {
   const el = document.getElementById('typewriter');
   if (!el) return;
-  const phrases = [
-    'AI Developer.',
-    'Computer Vision Engineer.',
-    'Full-Stack Builder.',
-    'Building things that matter.',
-  ];
-  let pIdx=0, cIdx=0, deleting=false;
+  const phrases = ['AI Developer.', 'Computer Vision Engineer.', 'Full-Stack Builder.', 'Building things that matter.'];
+  let pIdx = 0, cIdx = 0, deleting = false;
 
   function tick() {
     const phrase = phrases[pIdx];
-    el.textContent = deleting ? phrase.slice(0,--cIdx) : phrase.slice(0,++cIdx);
-    if (!deleting && cIdx===phrase.length) { deleting=true; return setTimeout(tick,2000); }
-    if (deleting && cIdx===0) { deleting=false; pIdx=(pIdx+1)%phrases.length; }
+    el.textContent = deleting ? phrase.slice(0, --cIdx) : phrase.slice(0, ++cIdx);
+    if (!deleting && cIdx === phrase.length) { deleting = true; return setTimeout(tick, 2000); }
+    if (deleting && cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
     setTimeout(tick, deleting ? 26 : 52);
   }
-  setTimeout(tick, 2800);
+  setTimeout(tick, 2900);
 })();
 
-/* ── 9. CHAPTER NAV DOTS ────────────────────────────────── */
+/* ── 10. SCROLLYTELLING HERO (desktop only) ─────────────── */
 (function() {
-  const dots    = document.querySelectorAll('.cnav-dot');
-  const sections= ['hero','about','projects','journey','skills','contact'];
+  if (isMobile()) return;
+  // Pin hero for extra 80% of viewport height so user experiences the rain before scrolling to about
+  ScrollTrigger.create({
+    trigger: '#hero',
+    start:   'top top',
+    end:     '+=60%',
+    pin:     true,
+    pinSpacing: true,
+  });
+})();
+
+/* ── 11. CHAPTER NAV DOTS ───────────────────────────────── */
+(function() {
+  const dots     = document.querySelectorAll('.cnav-dot');
+  const sections = ['hero','about','projects','process','journey','skills','contact'];
 
   function update() {
-    const scrollY = window.scrollY + window.innerHeight * 0.4;
+    const scrollY = window.scrollY + window.innerHeight * .38;
     let active = 0;
     sections.forEach((id, i) => {
       const el = document.getElementById(id);
@@ -185,133 +237,195 @@ gsap.registerPlugin(ScrollTrigger);
     });
     dots.forEach((d, i) => d.classList.toggle('active', i === active));
   }
-
-  window.addEventListener('scroll', update, { passive:true });
+  window.addEventListener('scroll', update, { passive: true });
   update();
 })();
 
-/* ── 10. ABOUT SENTENCES ────────────────────────────────── */
+/* ── 12. ABOUT SENTENCES ────────────────────────────────── */
 (function() {
-  document.querySelectorAll('.reveal-sentence').forEach((el,i) => {
+  document.querySelectorAll('.reveal-sentence').forEach((el, i) => {
     ScrollTrigger.create({
-      trigger: el, start:'top 83%',
-      onEnter: () => setTimeout(() => el.classList.add('visible'), i*160)
+      trigger: el, start: 'top 84%',
+      onEnter: () => setTimeout(() => el.classList.add('visible'), i * 155)
     });
   });
 })();
 
-/* ── 11. FEATURED CARD ──────────────────────────────────── */
+/* ── 13. FEATURED CARD ──────────────────────────────────── */
 (function() {
   const card = document.querySelector('.featured-card');
   if (!card) return;
-  gsap.fromTo(card,
-    { opacity:0, y:50 },
-    { opacity:1, y:0, duration:1.1, ease:'power3.out',
-      scrollTrigger:{ trigger:card, start:'top 86%' } }
-  );
-})();
-
-/* ── 12. PROJECT CARDS ──────────────────────────────────── */
-(function() {
-  document.querySelectorAll('.project-card').forEach((card,i) => {
-    gsap.fromTo(card,
-      { opacity:0, y:45 },
-      { opacity:1, y:0, duration:.85, delay:(i%2)*.12, ease:'power3.out',
-        scrollTrigger:{ trigger:card, start:'top 86%' } }
-    );
+  gsap.fromTo(card, { opacity: 0, y: 50 }, {
+    opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
+    scrollTrigger: { trigger: card, start: 'top 87%' }
   });
 })();
 
-/* ── 13. TIMELINE ───────────────────────────────────────── */
+/* ── 14. PROJECT CARDS ──────────────────────────────────── */
+(function() {
+  document.querySelectorAll('.project-card').forEach((card, i) => {
+    gsap.fromTo(card, { opacity: 0, y: 45 }, {
+      opacity: 1, y: 0, duration: .85, delay: (i % 2) * .12, ease: 'power3.out',
+      scrollTrigger: { trigger: card, start: 'top 87%' }
+    });
+  });
+})();
+
+/* ── 15. PROCESS STEPS ──────────────────────────────────── */
+(function() {
+  document.querySelectorAll('.reveal-step').forEach((el, i) => {
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%',
+      onEnter: () => setTimeout(() => el.classList.add('visible'), i * 120)
+    });
+  });
+})();
+
+/* ── 16. TIMELINE ───────────────────────────────────────── */
 (function() {
   const fill  = document.getElementById('timelineFill');
   const nodes = document.querySelectorAll('.tl-node');
   if (!fill) return;
+
   gsap.to(fill, {
-    height:'100%', ease:'none',
-    scrollTrigger:{ trigger:'.timeline', start:'top 68%', end:'bottom 48%', scrub:1.4 }
+    height: '100%', ease: 'none',
+    scrollTrigger: { trigger: '.timeline', start: 'top 68%', end: 'bottom 48%', scrub: 1.4 }
   });
-  nodes.forEach((node,i) => {
+  nodes.forEach((node, i) => {
     ScrollTrigger.create({
-      trigger:node, start:'top 82%',
-      onEnter: () => setTimeout(() => node.classList.add('visible'), i*110)
+      trigger: node, start: 'top 83%',
+      onEnter: () => setTimeout(() => node.classList.add('visible'), i * 105)
     });
   });
 })();
 
-/* ── 14. BENTO GRID ─────────────────────────────────────── */
+/* ── 17. BENTO GRID ─────────────────────────────────────── */
 (function() {
-  document.querySelectorAll('.bento').forEach((b,i) => {
+  document.querySelectorAll('.bento').forEach((b, i) => {
     ScrollTrigger.create({
-      trigger:b, start:'top 89%',
-      onEnter: () => setTimeout(() => b.classList.add('visible'), i*75)
+      trigger: b, start: 'top 90%',
+      onEnter: () => setTimeout(() => b.classList.add('visible'), i * 70)
     });
   });
 })();
 
-/* ── 15. CONTACT ────────────────────────────────────────── */
-(function() {
-  document.querySelectorAll(
-    '.contact-headline,.contact-sub,.email-link,.contact-cta,.social-row'
-  ).forEach((el,i) => {
-    ScrollTrigger.create({
-      trigger:el, start:'top 89%',
-      onEnter: () => setTimeout(() => el.classList.add('visible'), i*130)
-    });
-  });
-})();
-
-/* ── 16. SECTION TITLES & EPIGRAPHS ─────────────────────── */
+/* ── 18. SECTION TITLES & EPIGRAPHS ─────────────────────── */
 (function() {
   document.querySelectorAll('.section-title').forEach(t => {
-    gsap.fromTo(t, { opacity:0, y:36 }, {
-      opacity:1, y:0, duration:1, ease:'power3.out',
-      scrollTrigger:{ trigger:t, start:'top 86%' }
+    gsap.fromTo(t, { opacity: 0, y: 32 }, {
+      opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: t, start: 'top 87%' }
     });
   });
   document.querySelectorAll('.section-epigraph').forEach(e => {
-    gsap.fromTo(e, { opacity:0, y:20 }, {
-      opacity:1, y:0, duration:.8, ease:'power2.out',
-      scrollTrigger:{ trigger:e, start:'top 88%' }
+    gsap.fromTo(e, { opacity: 0, y: 18 }, {
+      opacity: 1, y: 0, duration: .8, ease: 'power2.out',
+      scrollTrigger: { trigger: e, start: 'top 89%' }
     });
   });
   document.querySelectorAll('.scene .section-label').forEach(l => {
-    gsap.fromTo(l, { opacity:0, x:-18 }, {
-      opacity:.8, x:0, duration:.75, ease:'power2.out',
-      scrollTrigger:{ trigger:l, start:'top 89%' }
+    gsap.fromTo(l, { opacity: 0, x: -16 }, {
+      opacity: .8, x: 0, duration: .7, ease: 'power2.out',
+      scrollTrigger: { trigger: l, start: 'top 90%' }
     });
   });
 })();
 
-/* ── 17. HERO PARALLAX ──────────────────────────────────── */
+/* ── 19. CONTACT SECTION ────────────────────────────────── */
 (function() {
-  const content = document.querySelector('.hero-content');
-  if (!content) return;
-  gsap.to(content, {
-    y:70, opacity:0, ease:'none',
-    scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:1 }
+  document.querySelectorAll(
+    '.contact-headline, .contact-sub, .email-link, .contact-cta, .social-row'
+  ).forEach((el, i) => {
+    ScrollTrigger.create({
+      trigger: el, start: 'top 90%',
+      onEnter: () => setTimeout(() => el.classList.add('visible'), i * 125)
+    });
   });
 })();
 
-/* ── 18. COUNT UP ───────────────────────────────────────── */
+/* ── 20. HERO PARALLAX ON SCROLL ────────────────────────── */
+(function() {
+  const content = document.querySelector('.hero-content');
+  if (!content || isMobile()) return;
+  gsap.to(content, {
+    y: 60, opacity: 0, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+})();
+
+/* ── 21. STAT COUNT UP ──────────────────────────────────── */
 (function() {
   document.querySelectorAll('.stat-num').forEach(el => {
     const target = parseInt(el.textContent);
     if (isNaN(target)) return;
     let done = false;
     ScrollTrigger.create({
-      trigger:el, start:'top 86%',
+      trigger: el, start: 'top 87%',
       onEnter: () => {
-        if (done) return; done=true;
-        let current=0; const step=target/28;
+        if (done) return; done = true;
+        let cur = 0; const step = target / 28;
         const iv = setInterval(() => {
-          current = Math.min(current+step, target);
-          el.textContent = Math.round(current);
-          if (current>=target) clearInterval(iv);
+          cur = Math.min(cur + step, target);
+          el.textContent = Math.round(cur);
+          if (cur >= target) clearInterval(iv);
         }, 38);
       }
     });
   });
 })();
 
-window.addEventListener('resize', () => ScrollTrigger.refresh());
+/* ── 22. BACKGROUND MUSIC ───────────────────────────────── */
+(function() {
+  const audio  = document.getElementById('bgMusic');
+  const btn    = document.getElementById('musicBtn');
+  if (!audio || !btn) return;
+
+  audio.volume = 0.08;
+  let started  = false;
+  let playing  = false;
+
+  function startMusic() {
+    if (started) return;
+    started = true;
+    audio.play().then(() => {
+      playing = true;
+      btn.classList.add('playing');
+    }).catch(() => {});
+  }
+
+  // Attempt on first interaction
+  ['click', 'scroll', 'keydown', 'touchstart'].forEach(ev => {
+    document.addEventListener(ev, startMusic, { once: true, passive: true });
+  });
+
+  // Toggle button
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!started) { startMusic(); return; }
+    if (playing) {
+      audio.pause();
+      playing = false;
+      btn.classList.remove('playing');
+    } else {
+      audio.play().catch(() => {});
+      playing = true;
+      btn.classList.add('playing');
+    }
+  });
+})();
+
+/* ── 23. INTRO VIDEO SOUND TOGGLE ───────────────────────── */
+(function() {
+  const video = document.getElementById('introVideo');
+  const btn   = document.getElementById('videoSoundBtn');
+  if (!video || !btn) return;
+  const icon  = btn.querySelector('.vsound-icon');
+
+  btn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    icon.textContent = video.muted ? '🔇' : '🔊';
+  });
+})();
+
+/* ── 24. RESIZE REFRESH ─────────────────────────────────── */
+window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
