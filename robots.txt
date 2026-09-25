@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thesouravburman.github.io/sitemap.xml
+Sitemap: https://souravburman.me/sitemap.xml
