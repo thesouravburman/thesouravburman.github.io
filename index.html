@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sourav Burman — AI & Computer Vision Developer</title>
-  <meta name="description" content="Sourav Burman — AI & Computer Vision Developer. B.Tech CSE 2023-2027, Brainware University. ex-Samsung R&D."/>
-  <meta name="keywords" content="Sourav Burman, AI Developer, Computer Vision, Machine Learning, IGNIS, Ocular AI"/>
+
+  <!-- SEO -->
+  <meta name="description" content="Sourav Burman — AI & Computer Vision Developer building systems that solve real problems. B.Tech CSE · ex-Samsung R&D · Brainware University."/>
+  <meta name="keywords" content="Sourav Burman, AI Developer, Computer Vision, Machine Learning, IGNIS, Ocular AI, Kolkata"/>
   <meta name="author" content="Sourav Burman"/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://thesouravburman.github.io/"/>
+  <link rel="canonical" href="https://souravburman.me/"/>
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Sourav Burman — AI & Computer Vision Developer"/>
-  <meta property="og:description" content="Building systems that detect eye conditions, classify traffic, read market sentiment and personalise fitness. B.Tech CSE · ex-Samsung R&D."/>
+  <meta property="og:description" content="Building systems that detect eye conditions, classify traffic, read market sentiment and personalise fitness."/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://thesouravburman.github.io/"/>
-  <meta property="og:image" content="https://thesouravburman.github.io/og-image.png"/>
+  <meta property="og:url" content="https://souravburman.me/"/>
+  <meta property="og:image" content="https://souravburman.me/og-image.png"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta property="og:locale" content="en_IN"/>
@@ -21,16 +25,69 @@
   <meta name="twitter:site" content="@thesouravburman"/>
   <meta name="twitter:title" content="Sourav Burman — AI Developer"/>
   <meta name="twitter:description" content="Building systems that solve real problems. B.Tech CSE · ex-Samsung R&D."/>
-  <meta name="twitter:image" content="https://thesouravburman.github.io/og-image.png"/>
+  <meta name="twitter:image" content="https://souravburman.me/og-image.png"/>
+
+  <!-- Verification (paste tokens here) -->
+  <meta name="google-site-verification" content="PASTE_GOOGLE_TOKEN_HERE"/>
+  <meta name="msvalidate.01" content="PASTE_BING_TOKEN_HERE"/>
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sourav Burman",
+    "jobTitle": "AI & Computer Vision Developer",
+    "url": "https://souravburman.me",
+    "image": "https://souravburman.me/og-image.png",
+    "email": "contact@souravburman.me",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kolkata",
+      "addressRegion": "West Bengal",
+      "addressCountry": "IN"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Brainware University",
+      "address": {"@type": "PostalAddress", "addressLocality": "Kolkata"}
+    },
+    "sameAs": [
+      "https://github.com/thesouravburman",
+      "https://linkedin.com/in/thesouravburman",
+      "https://x.com/thesouravburman",
+      "https://beacons.ai/souravburman"
+    ],
+    "knowsAbout": ["Python","Computer Vision","Machine Learning","Next.js","PyTorch","OpenCV","NLP","Supabase","TypeScript","Deep Learning","Cryptography"]
+  }
+  </script>
+
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||'dark';
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- CURTAIN -->
+<!-- ── AUDIO ────────────────────────────────────────────── -->
+<audio id="bgMusic" loop preload="none">
+  <source src="bg-music.mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- ── CURTAIN ───────────────────────────────────────────── -->
 <div class="curtain" id="curtain" aria-hidden="true">
   <div class="curtain-seal">
     <div class="seal-ring"></div>
@@ -39,26 +96,44 @@
   <p class="curtain-name">Sourav Burman</p>
 </div>
 
-<!-- CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
+<!-- ── PERSISTENT UI ────────────────────────────────────── -->
+<div class="cursor-dot"  id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
 <div class="grain-overlay" aria-hidden="true"></div>
+<div id="progressBar"></div>
 
-<!-- CHAPTER NAV -->
+<!-- Theme toggle -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<!-- Music toggle -->
+<button class="music-btn" id="musicBtn" aria-label="Toggle background music">
+  <svg class="icon-music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="icon-music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/></svg>
+  <span class="music-label">MUSIC</span>
+</button>
+
+<!-- Chapter nav -->
 <nav class="chapter-nav" id="chapterNav" aria-label="Chapter navigation">
-  <a href="#hero"     class="cnav-dot active" data-label="INTRO"   aria-label="Intro"></a>
-  <a href="#about"    class="cnav-dot"         data-label="ABOUT"   aria-label="About"></a>
-  <a href="#projects" class="cnav-dot"         data-label="WORK"    aria-label="Work"></a>
-  <a href="#journey"  class="cnav-dot"         data-label="JOURNEY" aria-label="Journey"></a>
-  <a href="#skills"   class="cnav-dot"         data-label="ARSENAL" aria-label="Arsenal"></a>
-  <a href="#contact"  class="cnav-dot"         data-label="CONTACT" aria-label="Contact"></a>
+  <a href="#hero"     class="cnav-dot active" data-label="INTRO"    aria-label="Intro"></a>
+  <a href="#about"    class="cnav-dot"         data-label="ABOUT"    aria-label="About"></a>
+  <a href="#projects" class="cnav-dot"         data-label="WORK"     aria-label="Work"></a>
+  <a href="#process"  class="cnav-dot"         data-label="METHOD"   aria-label="Method"></a>
+  <a href="#journey"  class="cnav-dot"         data-label="JOURNEY"  aria-label="Journey"></a>
+  <a href="#skills"   class="cnav-dot"         data-label="ARSENAL"  aria-label="Arsenal"></a>
+  <a href="#contact"  class="cnav-dot"         data-label="CONTACT"  aria-label="Contact"></a>
 </nav>
 
-<!-- SCENE 1 — HERO -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 1 — HERO
+══════════════════════════════════════════════════════════ -->
 <section id="hero" class="scene scene--hero">
   <canvas id="binaryRain" aria-hidden="true"></canvas>
   <div class="hero-glow" aria-hidden="true"></div>
+
   <div class="hero-content">
     <p class="hero-time" id="heroTime" aria-live="polite"></p>
     <p class="hero-eyebrow">
@@ -73,20 +148,34 @@
     </div>
     <div class="hero-now" id="heroNow">
       <span class="now-dot"></span>
-      <span class="now-text">Currently building — <em>IGNIS Phase 2</em></span>
+      <span>Currently building — <em>IGNIS Phase 2</em></span>
     </div>
     <div class="hero-cta" id="heroCta">
-      <a href="Sourav_Burman_Resume.pdf" download="Sourav_Burman_Resume.pdf" class="btn btn--primary magnetic">Download Resume</a>
+      <a href="Sourav_Burman_Resume.pdf?v=2" download="Sourav_Burman_Resume.pdf" class="btn btn--primary magnetic">Download Resume</a>
       <a href="mailto:contact@souravburman.me" class="btn btn--ghost magnetic">Email Me</a>
     </div>
   </div>
+
+  <!-- Intro video card -->
+  <div class="hero-video-card" id="heroVideoCard">
+    <video id="introVideo" autoplay muted loop playsinline>
+      <source src="intro.mp4" type="video/mp4"/>
+    </video>
+    <button class="video-sound-btn" id="videoSoundBtn" aria-label="Toggle video sound">
+      <span class="vsound-icon">🔇</span>
+      <span class="vsound-label">Sound</span>
+    </button>
+  </div>
+
   <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
     <div class="scroll-track"><div class="scroll-thumb"></div></div>
     <span class="scroll-label">SCROLL</span>
   </div>
 </section>
 
-<!-- SCENE 2 — ABOUT -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 2 — ABOUT
+══════════════════════════════════════════════════════════ -->
 <section id="about" class="scene scene--about">
   <div class="about-wrap">
     <div class="about-left">
@@ -104,7 +193,7 @@
     self.uni   <span class="op">=</span> <span class="st">"Brainware University"</span>
     self.batch <span class="op">=</span> <span class="st">"2023 – 2027"</span>
     self.sgpa  <span class="op">=</span> <span class="st">8.79</span>
-    self.past  <span class="op">=</span> <span class="st">"Samsung R&amp;D, Kolkata"</span>
+    self.past  <span class="op">=</span> <span class="st">"Samsung R&D, Kolkata"</span>
     self.goal  <span class="op">=</span> <span class="st">"Build what matters"</span>
 
   <span class="kw">def</span> <span class="fn">obsession</span>(self):
@@ -113,8 +202,8 @@
     </div>
     <div class="about-right">
       <p class="about-sentence reveal-sentence">I'm a third-year Computer Science student at <strong>Brainware University, Kolkata</strong> (SGPA 8.79) — specialising in AI and Computer Vision.</p>
-      <p class="about-sentence reveal-sentence">I've built systems that detect eye conditions without any hardware, classify live traffic in real time, read market sentiment from raw text — and a complete personalised AI fitness platform powered by Claude AI.</p>
-      <p class="about-sentence reveal-sentence">I trained in <strong>Cryptographic Security at the Indian Statistical Institute, Kolkata</strong> under a MeitY government programme — and completed <strong>Qualcomm's Deep Tech Entrepreneurship</strong> course with a perfect 100% score.</p>
+      <p class="about-sentence reveal-sentence">I've built systems that detect eye conditions without hardware, classify live traffic in real time, read market sentiment from raw text — and a complete personalised AI fitness platform powered by Claude AI.</p>
+      <p class="about-sentence reveal-sentence">I trained in <strong>Cryptographic Security at the Indian Statistical Institute, Kolkata</strong> under a MeitY programme — and completed <strong>Qualcomm's Deep Tech Entrepreneurship</strong> course with a perfect 100% score.</p>
       <p class="about-sentence reveal-sentence">I'm not interested in average things. I'm obsessed with the intersection of <strong>precision engineering</strong> and real human impact.</p>
       <div class="about-stats">
         <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Live Projects</span></div>
@@ -125,7 +214,9 @@
   </div>
 </section>
 
-<!-- SCENE 3 — PROJECTS -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 3 — PROJECTS
+══════════════════════════════════════════════════════════ -->
 <section id="projects" class="scene scene--projects">
   <div class="section-header">
     <div class="section-label">SELECTED WORK</div>
@@ -140,14 +231,15 @@
         <div class="project-num">00</div>
         <h3 class="featured-name">IGNIS</h3>
         <p class="featured-tagline">Ignite What You're Made Of.</p>
-        <p class="featured-desc">A complete personalised fitness platform — 7-step AI onboarding computes BMI, BMR, TDEE and daily targets per profile. Powered by <strong>Anthropic Claude AI</strong> as in-app health coach. 30-day adaptive calisthenics programme across 3 progressive phases. Gamified tracker with milestone badge vault, streak counters, 30-day calendar. Full PWA — installable on iOS &amp; Android.</p>
+        <p class="featured-impact">Problem: Generic fitness plans ignore individual physiology. Solution: 7-step AI onboarding computes BMI, BMR, TDEE per profile → 30-day adaptive programme.</p>
+        <p class="featured-desc">Powered by <strong>Anthropic Claude AI</strong> as in-app health coach. 3 progressive phases (VITAE → KRATOS → ZENITH). Gamified badge vault, streak counters, 30-day calendar. Full PWA — installable on iOS &amp; Android.</p>
         <div class="pill-row">
           <span class="pill pill--fire">Next.js 14</span><span class="pill pill--fire">React</span>
           <span class="pill pill--fire">Supabase</span><span class="pill pill--fire">Vercel</span>
           <span class="pill pill--fire">TypeScript</span><span class="pill pill--fire">Claude AI</span>
         </div>
         <div class="project-links">
-          <a href="https://igniswork.vercel.app" target="_blank" rel="noopener" class="proj-link gold">Live App →</a>
+          <a href="https://igniswork.vercel.app" target="_blank" rel="noopener noreferrer" class="proj-link gold">Live App →</a>
         </div>
       </div>
       <div class="featured-right">
@@ -161,75 +253,128 @@
   </div>
 
   <div class="projects-grid">
+
     <article class="project-card magnetic">
       <div class="project-num">01</div>
       <div class="project-body">
         <h3 class="project-name">Ocular AI <span class="version-badge">v2</span></h3>
-        <p class="project-brief">Smartphone-based refractive error detection using screen photorefraction. No hardware. No clinic. Clinical validation: n=92, r=0.9857.</p>
-        <p class="project-detail">Software-only vision screening — detects myopia, hyperopia and astigmatism. Avg error 0.241D, 85.9% within ±0.5D. Independent research project — proprietary licence.</p>
+        <p class="project-problem">Problem: Refractive error detection requires expensive equipment inaccessible to billions.</p>
+        <p class="project-brief">Software-only smartphone screening using photorefraction — n=92, r=0.9857, avg error 0.241D, 85.9% within ±0.5D.</p>
+        <p class="project-detail">Proprietary research — no hardware required. OpenCV + MediaPipe real-time pupil tracking, 5-level severity classification. Paper authored, advancing toward clinical trials.</p>
         <div class="pill-row">
           <span class="pill">Python</span><span class="pill">OpenCV</span>
           <span class="pill">MediaPipe</span><span class="pill">Vercel</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/thesouravburman/ocular-ai" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-          <a href="https://ocularai.vercel.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+          <a href="https://github.com/thesouravburman/ocular-ai" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
+          <a href="https://ocularai.vercel.app" target="_blank" rel="noopener noreferrer" class="proj-link gold">Live Demo →</a>
         </div>
       </div>
     </article>
+
     <article class="project-card magnetic">
       <div class="project-num">02</div>
       <div class="project-body">
         <h3 class="project-name">Vehicle Classifier</h3>
-        <p class="project-brief">Real-time traffic classification into 5 vehicle types using YOLOv8 + REST APIs. Built at Samsung R&amp;D Institute, Kolkata.</p>
-        <p class="project-detail">YOLOv8 pipeline detecting two-wheelers, sedans, SUVs, buses and trucks from live feeds — with API-based reporting dashboard in a real R&amp;D environment.</p>
+        <p class="project-problem">Problem: Manual traffic monitoring is slow and error-prone in high-density urban environments.</p>
+        <p class="project-brief">YOLOv8 pipeline classifying 5 vehicle types from live feeds with REST API reporting. Built at Samsung R&amp;D Institute, Kolkata.</p>
+        <p class="project-detail">Production-grade CV pipeline detecting two-wheelers, sedans, SUVs, buses and trucks — engineered inside a live R&amp;D environment with professional engineers.</p>
         <div class="pill-row">
           <span class="pill">Python</span><span class="pill">YOLOv8</span>
           <span class="pill">Deep Learning</span><span class="pill">REST API</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/thesouravburman/vehicle-classifier" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-          <a href="https://vehicles-classifier.streamlit.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+          <a href="https://github.com/thesouravburman/vehicle-classifier" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
+          <a href="https://vehicles-classifier.streamlit.app" target="_blank" rel="noopener noreferrer" class="proj-link gold">Live Demo →</a>
         </div>
       </div>
     </article>
+
     <article class="project-card magnetic">
       <div class="project-num">03</div>
       <div class="project-body">
         <h3 class="project-name">Market Sentiment Analyser</h3>
-        <p class="project-brief">NLP pipeline classifying product reviews as positive, negative or neutral — real-time analysis and CSV batch upload.</p>
-        <p class="project-detail">HuggingFace Transformers + VADER pipeline with interactive Plotly dashboards. Upload thousands of reviews as CSV and get instant polarity analysis.</p>
+        <p class="project-problem">Problem: Manually reading thousands of customer reviews is a bottleneck for product teams.</p>
+        <p class="project-brief">NLP pipeline classifying reviews as positive/negative/neutral with real-time visualisations and CSV batch upload.</p>
+        <p class="project-detail">HuggingFace Transformers + VADER pipeline with interactive Plotly dashboards. Instant polarity analysis at any scale.</p>
         <div class="pill-row">
           <span class="pill">Python</span><span class="pill">NLP</span>
           <span class="pill">HuggingFace</span><span class="pill">Plotly</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/thesouravburman/market-sentiment-analyser" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-          <a href="https://market-sentiment-analyser.streamlit.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+          <a href="https://github.com/thesouravburman/market-sentiment-analyser" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
+          <a href="https://market-sentiment-analyser.streamlit.app" target="_blank" rel="noopener noreferrer" class="proj-link gold">Live Demo →</a>
         </div>
       </div>
     </article>
+
     <article class="project-card magnetic">
       <div class="project-num">04</div>
       <div class="project-body">
         <h3 class="project-name">Sales Lead Scorer</h3>
-        <p class="project-brief">ML model predicting lead conversion probability. Inspired by real marketing work — 12% ROI improvement, Rs. 2.5L+ incremental revenue.</p>
-        <p class="project-detail">Gradient Boosting classifier trained on 1,200 synthetic leads — 0-100% scoring with full pipeline analytics and model explainability dashboard.</p>
+        <p class="project-problem">Problem: Sales teams waste time chasing low-probability leads without data-driven prioritisation.</p>
+        <p class="project-brief">GBM classifier scoring leads 0-100%. Real-world inspiration: 12% ROI improvement, Rs. 2.5L+ incremental revenue at MyGlamm.</p>
+        <p class="project-detail">Trained on 1,200 synthetic leads — full pipeline analytics and model explainability dashboard with feature importance visualisation.</p>
         <div class="pill-row">
           <span class="pill">Python</span><span class="pill">Scikit-learn</span>
           <span class="pill">GBM</span><span class="pill">Data Science</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/thesouravburman/sales-lead-scorer" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-          <a href="https://sales-lead-scorer.streamlit.app" target="_blank" rel="noopener" class="proj-link gold">Live Demo →</a>
+          <a href="https://github.com/thesouravburman/sales-lead-scorer" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
+          <a href="https://sales-lead-scorer.streamlit.app" target="_blank" rel="noopener noreferrer" class="proj-link gold">Live Demo →</a>
         </div>
       </div>
     </article>
+
   </div>
 </section>
 
-<!-- SCENE 4 — JOURNEY -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 4 — PROCESS (NEW)
+══════════════════════════════════════════════════════════ -->
+<section id="process" class="scene scene--process">
+  <canvas class="section-rain" id="processRain" aria-hidden="true"></canvas>
+  <div class="section-header">
+    <div class="section-label">HOW I WORK</div>
+    <p class="section-epigraph">"Precision over speed. Always."</p>
+    <h2 class="section-title">The <em>method.</em></h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal-step">
+      <div class="step-num">01</div>
+      <div class="step-glyph">◎</div>
+      <div class="step-title">UNDERSTAND</div>
+      <p class="step-desc">Identify the real problem before writing a single line of code. Most failures are diagnosis failures.</p>
+    </div>
+    <div class="process-arrow reveal-step">→</div>
+    <div class="process-step reveal-step">
+      <div class="step-num">02</div>
+      <div class="step-glyph">⬡</div>
+      <div class="step-title">ENGINEER</div>
+      <p class="step-desc">Build with precision — every architectural decision is intentional, every trade-off is considered.</p>
+    </div>
+    <div class="process-arrow reveal-step">→</div>
+    <div class="process-step reveal-step">
+      <div class="step-num">03</div>
+      <div class="step-glyph">◈</div>
+      <div class="step-title">VALIDATE</div>
+      <p class="step-desc">Test against real data. Measure outcomes, not assumptions. r=0.9857 or it ships again.</p>
+    </div>
+    <div class="process-arrow reveal-step">→</div>
+    <div class="process-step reveal-step">
+      <div class="step-num">04</div>
+      <div class="step-glyph">↗</div>
+      <div class="step-title">SHIP</div>
+      <p class="step-desc">Deploy, monitor, iterate. The work is never truly done — only the version number changes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 5 — TIMELINE
+══════════════════════════════════════════════════════════ -->
 <section id="journey" class="scene scene--journey">
+  <canvas class="section-rain" id="journeyRain" aria-hidden="true"></canvas>
   <div class="section-header">
     <div class="section-label">JOURNEY</div>
     <p class="section-epigraph">"The path is made by walking."</p>
@@ -238,19 +383,21 @@
   <div class="timeline">
     <div class="timeline-rail"><div class="timeline-fill" id="timelineFill"></div></div>
     <div class="timeline-nodes">
-      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Aug 2023</div><div class="tl-title">The Beginning</div><p class="tl-desc">Enrolled in B.Tech CSE at Brainware University, Kolkata. Currently maintaining 8.79 SGPA. The obsession with AI begins.</p></div></div>
-      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Jun 2023 – Aug 2024</div><div class="tl-title">Marketing Coordinator — MyGlamm</div><p class="tl-desc">Market research across 50+ stores. Drove 12% campaign ROI improvement, 18% rise in customer acquisition, Rs. 2.5L+ incremental revenue through CRO initiatives.</p></div></div>
-      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Sept – Nov 2025</div><div class="tl-title">Samsung R&amp;D Institute — AI &amp; API Integration</div><p class="tl-desc">Structured AI &amp; API Integration programme at Samsung R&amp;D Institute, Kolkata. Delivered production-grade Vehicle Classifier pipeline integrating YOLOv8 with REST APIs in a live engineering environment.</p></div></div>
+      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Aug 2023</div><div class="tl-title">The Beginning</div><p class="tl-desc">Enrolled in B.Tech CSE at Brainware University, Kolkata. Currently maintaining 8.79 SGPA.</p></div></div>
+      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Jun 2023 – Aug 2024</div><div class="tl-title">Marketing Coordinator — MyGlamm</div><p class="tl-desc">Market research across 50+ stores. 12% campaign ROI improvement, 18% customer acquisition rise, Rs. 2.5L+ incremental revenue.</p></div></div>
+      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Sept – Nov 2025</div><div class="tl-title">Samsung R&amp;D Institute — AI &amp; API Integration</div><p class="tl-desc">Delivered production-grade Vehicle Classifier pipeline integrating YOLOv8 with REST APIs in a live engineering environment.</p></div></div>
       <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">2024 – 2025</div><div class="tl-title">4 AI/ML Projects Shipped</div><p class="tl-desc">Built and deployed Ocular AI, Vehicle Classifier, Market Sentiment Analyser and Sales Lead Scorer — all live.</p></div></div>
-      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Feb 2026</div><div class="tl-title">ISI Kolkata — Cryptographic Security</div><p class="tl-desc">5-day MeitY-funded intensive at the Indian Statistical Institute on Privacy Preserving Cryptography, Advanced Encryption &amp; Zero-Knowledge Proofs.</p></div></div>
-      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Mar – Apr 2026</div><div class="tl-title">Qualcomm · Microsoft · SEBI Certifications</div><p class="tl-desc">Qualcomm Deep Tech Entrepreneurship — 100% score. Microsoft × Simplilearn MS Excel. SEBI National Financial Literacy Quiz 2026.</p></div></div>
+      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Feb 2026</div><div class="tl-title">ISI Kolkata — Cryptographic Security</div><p class="tl-desc">5-day MeitY-funded intensive on Privacy Preserving Cryptography, Advanced Encryption &amp; Zero-Knowledge Proofs.</p></div></div>
+      <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Mar – Apr 2026</div><div class="tl-title">Qualcomm · Microsoft · SEBI Certifications</div><p class="tl-desc">Qualcomm Deep Tech Entrepreneurship — 100% score. Microsoft × Simplilearn MS Excel. SEBI Financial Literacy Quiz 2026.</p></div></div>
       <div class="tl-node reveal-node"><div class="tl-dot"></div><div class="tl-content"><div class="tl-year">Jun 2026</div><div class="tl-title">IGNIS Launched · Ocular AI v2</div><p class="tl-desc">Launched IGNIS — full-stack personalised fitness platform on Next.js + Supabase + Claude AI. Upgraded Ocular AI to v2 on Vercel.</p></div></div>
       <div class="tl-node reveal-node tl-node--active"><div class="tl-dot tl-dot--pulse"></div><div class="tl-content"><div class="tl-year">Jul 2027 →</div><div class="tl-title">Final Year. Open to Opportunities.</div><p class="tl-desc">Completing B.Tech CSE. Actively seeking AI/ML roles, research collaborations, and ambitious problems worth solving.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- SCENE 5 — SKILLS -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 6 — SKILLS
+══════════════════════════════════════════════════════════ -->
 <section id="skills" class="scene scene--skills">
   <div class="section-header">
     <div class="section-label">ARSENAL</div>
@@ -265,13 +412,16 @@
     <div class="bento reveal-bento"><div class="bento-glyph">◈</div><div class="bento-name">NLP</div><div class="bento-sub">HuggingFace · Transformers · VADER</div></div>
     <div class="bento reveal-bento"><div class="bento-glyph">▦</div><div class="bento-name">Data Science</div><div class="bento-sub">Pandas · NumPy · Plotly · SQL</div></div>
     <div class="bento reveal-bento"><div class="bento-glyph">🔐</div><div class="bento-name">Cryptography</div><div class="bento-sub">Zero-Knowledge Proofs · Encryption</div><div class="bento-badge samsung">ISI · MeitY</div></div>
-    <div class="bento reveal-bento"><div class="bento-glyph">↗</div><div class="bento-name">Deployment</div><div class="bento-sub">Vercel · Streamlit Cloud · GitHub Pages</div></div>
+    <div class="bento reveal-bento"><div class="bento-glyph">↗</div><div class="bento-name">Deployment</div><div class="bento-sub">Vercel · Streamlit · GitHub Pages</div></div>
     <div class="bento bento--tall reveal-bento"><div class="bento-glyph">⑂</div><div class="bento-name">Git &amp; GitHub</div><div class="bento-sub">Version Control · API · Automation</div></div>
   </div>
 </section>
 
-<!-- SCENE 6 — CONTACT -->
+<!-- ══════════════════════════════════════════════════════════
+     SCENE 7 — CONTACT
+══════════════════════════════════════════════════════════ -->
 <section id="contact" class="scene scene--contact">
+  <canvas class="section-rain" id="contactRain" aria-hidden="true"></canvas>
   <div class="contact-inner">
     <div class="section-label">GET IN TOUCH</div>
     <p class="section-epigraph">"The best collaborations start with a single message."</p>
@@ -280,16 +430,16 @@
     <a href="mailto:contact@souravburman.me" class="email-link reveal-contact magnetic">contact@souravburman.me<span class="blink-cursor">_</span></a>
     <div class="contact-cta reveal-contact">
       <a href="mailto:contact@souravburman.me" class="btn btn--primary magnetic">Send an Email</a>
-      <a href="Sourav_Burman_Resume.pdf" download="Sourav_Burman_Resume.pdf" class="btn btn--ghost magnetic">Download Resume</a>
-      <a href="https://beacons.ai/souravburman" target="_blank" rel="noopener" class="btn btn--ghost magnetic">All Links</a>
+      <a href="Sourav_Burman_Resume.pdf?v=2" download="Sourav_Burman_Resume.pdf" class="btn btn--ghost magnetic">Download Resume</a>
+      <a href="https://beacons.ai/souravburman" target="_blank" rel="noopener noreferrer" class="btn btn--ghost magnetic">All Links</a>
     </div>
     <div class="social-row reveal-contact">
-      <a href="https://github.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-      <a href="https://linkedin.com/in/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-      <a href="https://x.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://instagram.com/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-      <a href="https://share.streamlit.io/user/thesouravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Streamlit"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.876 10.49L12.56.16a.751.751 0 00-1.12 0L3.124 10.49a.67.67 0 00.056.976l8.316 7.247a.751.751 0 00.988 0l8.316-7.247a.67.67 0 00.076-.976zM11.44 21.232L3.576 14.37a.67.67 0 00-1.008.203l-.84 1.98a.67.67 0 00.252.82l9.192 5.88a.751.751 0 00.84 0l9.192-5.88a.67.67 0 00.252-.82l-.84-1.98a.67.67 0 00-1.008-.203l-7.968 6.862z"/></svg></a>
-      <a href="https://beacons.ai/souravburman" target="_blank" rel="noopener" class="social-btn magnetic" aria-label="Beacons"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
+      <a href="https://github.com/thesouravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://linkedin.com/in/thesouravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/thesouravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://instagram.com/thesouravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://share.streamlit.io/user/thesouravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Streamlit"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.876 10.49L12.56.16a.751.751 0 00-1.12 0L3.124 10.49a.67.67 0 00.056.976l8.316 7.247a.751.751 0 00.988 0l8.316-7.247a.67.67 0 00.076-.976zM11.44 21.232L3.576 14.37a.67.67 0 00-1.008.203l-.84 1.98a.67.67 0 00.252.82l9.192 5.88a.751.751 0 00.84 0l9.192-5.88a.67.67 0 00.252-.82l-.84-1.98a.67.67 0 00-1.008-.203l-7.968 6.862z"/></svg></a>
+      <a href="https://beacons.ai/souravburman" target="_blank" rel="noopener noreferrer" class="social-btn magnetic" aria-label="Beacons"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
     </div>
   </div>
   <footer class="site-footer">
