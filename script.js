@@ -376,40 +376,49 @@ createRain(document.getElementById('contactRain'), { dim: .45, interval: 55 });
 
 /* ── 22. BACKGROUND MUSIC ───────────────────────────────── */
 (function() {
-  const audio  = document.getElementById('bgMusic');
-  const btn    = document.getElementById('musicBtn');
+  const audio = document.getElementById('bgMusic');
+  const btn   = document.getElementById('musicBtn');
   if (!audio || !btn) return;
 
-  audio.volume = 0.08;
-  let started  = false;
-  let playing  = false;
+  audio.volume  = 0.08;
+  let playing   = false;
 
-  function startMusic() {
-    if (started) return;
-    started = true;
-    audio.play().then(() => {
-      playing = true;
-      btn.classList.add('playing');
-    }).catch(() => {});
+  function setPlaying(state) {
+    playing = state;
+    btn.classList.toggle('playing', state);
   }
 
-  // Attempt on first interaction
-  ['click', 'scroll', 'keydown', 'touchstart'].forEach(ev => {
-    document.addEventListener(ev, startMusic, { once: true, passive: true });
-  });
+  // Attempt autoplay immediately (works on return visits / after interaction)
+  function tryPlay() {
+    audio.play().then(() => setPlaying(true)).catch(() => {
+      // Browser blocked — wait for first user interaction
+      const unlock = () => {
+        audio.play().then(() => setPlaying(true)).catch(() => {});
+        document.removeEventListener('click',      unlock);
+        document.removeEventListener('scroll',     unlock);
+        document.removeEventListener('touchstart', unlock);
+      };
+      document.addEventListener('click',      unlock, { passive: true });
+      document.addEventListener('scroll',     unlock, { passive: true });
+      document.addEventListener('touchstart', unlock, { passive: true });
+    });
+  }
 
-  // Toggle button
+  // Start playing as early as possible
+  if (document.readyState === 'complete') {
+    tryPlay();
+  } else {
+    window.addEventListener('load', tryPlay, { once: true });
+  }
+
+  // Toggle: pause if playing, resume if paused
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (!started) { startMusic(); return; }
     if (playing) {
       audio.pause();
-      playing = false;
-      btn.classList.remove('playing');
+      setPlaying(false);
     } else {
-      audio.play().catch(() => {});
-      playing = true;
-      btn.classList.add('playing');
+      audio.play().then(() => setPlaying(true)).catch(() => {});
     }
   });
 })();
