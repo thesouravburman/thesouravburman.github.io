@@ -83,7 +83,7 @@
 <body>
 
 <!-- ── AUDIO ────────────────────────────────────────────── -->
-<audio id="bgMusic" loop preload="none">
+<audio id="bgMusic" loop preload="auto" autoplay>
   <source src="bg-music.mp3" type="audio/mpeg"/>
 </audio>
 
@@ -139,6 +139,18 @@
     <p class="hero-eyebrow">
       <span class="eyebrow-line"></span>AI &amp; COMPUTER VISION DEVELOPER<span class="eyebrow-line"></span>
     </p>
+
+    <!-- Intro video card — between eyebrow and name -->
+    <div class="hero-video-card" id="heroVideoCard">
+      <video id="introVideo" autoplay muted loop playsinline preload="auto">
+        <source src="intro.mp4" type="video/mp4"/>
+      </video>
+      <button class="video-sound-btn" id="videoSoundBtn" aria-label="Toggle video sound">
+        <span class="vsound-icon">🔇</span>
+        <span class="vsound-label">Sound</span>
+      </button>
+    </div>
+
     <h1 class="hero-name" id="heroName" aria-label="Sourav Burman"></h1>
     <div class="hero-sub"><span id="typewriter"></span><span class="blink-cursor">|</span></div>
     <div class="hero-meta" id="heroMeta">
@@ -154,17 +166,6 @@
       <a href="Sourav_Burman_Resume.pdf?v=2" download="Sourav_Burman_Resume.pdf" class="btn btn--primary magnetic">Download Resume</a>
       <a href="mailto:contact@souravburman.me" class="btn btn--ghost magnetic">Email Me</a>
     </div>
-  </div>
-
-  <!-- Intro video card -->
-  <div class="hero-video-card" id="heroVideoCard">
-    <video id="introVideo" autoplay muted loop playsinline>
-      <source src="intro.mp4" type="video/mp4"/>
-    </video>
-    <button class="video-sound-btn" id="videoSoundBtn" aria-label="Toggle video sound">
-      <span class="vsound-icon">🔇</span>
-      <span class="vsound-label">Sound</span>
-    </button>
   </div>
 
   <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
